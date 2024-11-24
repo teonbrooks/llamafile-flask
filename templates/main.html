@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Best Movie Actors
+{% endblock %}
+
+
+{% block content %}
+
+<!--
+	TIPS about using Bootstrap-Flask:
+	https://github.com/helloflask/bootstrap-flask
+	https://bootstrap-flask.readthedocs.io/
+-->
+
+<h1>Flask Form Example</h1>
+
+<!-- Display text if it was submitted -->
+{% if prompt %}
+    <p> Prompt: {{ prompt }}</p>
+{% endif %}
+
+
+{% if response %}
+    <p> Response: {{ response }}</p>
+{% endif %}
+
+
+
+<!-- Render the form -->
+<form method="POST">
+    {{ form.hidden_tag() }}  <!-- CSRF token -->
+    <div>
+        {{ form.text.label }}
+        {{ form.text() }}
+        {% if form.text.errors %}
+            <ul>
+                {% for error in form.text.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <div>
+        {{ form.submit() }}
+    </div>
+</form>
+
+{% endblock %}
